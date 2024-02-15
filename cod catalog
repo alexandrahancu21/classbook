@@ -1,0 +1,242 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data.SqlClient;
+using System.Windows.Forms;
+
+namespace csharp
+{
+    public partial class Catalog : Form
+    {
+
+        SqlConnection con;
+        SqlCommand cmd;
+        public Catalog()
+        {
+            
+            InitializeComponent();
+            con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\hancu\Documents\Catalog.mdf;Integrated Security=True;Connect Timeout=30");
+        }
+
+        private void adaugaNotaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tabControl1.Hide();
+            tabControl1.Show();
+            tabPageAdaugareNota.Show();            
+        }
+
+        private void tabPageAdaugareNota_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+
+        private void buttonAdaugaNota_Click(object sender, EventArgs e)
+        {
+            string numeMaterie = comboBoxNumeMaterie.Text;
+            int nota = 0;
+
+            if (Convert.ToInt32(textBoxNotaAdauga.Text) >= 1 && Convert.ToInt32(textBoxNotaAdauga.Text) <= 10)
+                nota = Convert.ToInt32(textBoxNotaAdauga.Text);
+            else
+            {
+                MessageBox.Show("Poti introduce doar numere si campul trebuie completat neaparat!");
+                return;
+            }
+
+            con.Open();
+
+            cmd = new SqlCommand("INSERT INTO Note(" + numeMaterie + ", IdElevi) VALUES (@nota, @id)", con);
+            cmd.Parameters.AddWithValue("nota", nota);
+            cmd.Parameters.AddWithValue("id", Form1.id);
+            cmd.ExecuteNonQuery();
+
+            MyNewMessageBox1 mesaj1 = new MyNewMessageBox1();
+            this.Hide();
+            mesaj1.ShowDialog();
+            this.Show();
+            textBoxNotaAdauga.Clear();
+            con.Close();
+        }
+        
+        private void deteleAllItemsInDataGridView()
+        {
+            dataGridView1.Rows.Clear();
+        }
+        private void deteleAllItemsInDataGridView1()
+        {
+            dataGridView2.Rows.Clear();
+        }
+        string[] vectorMaterii = {"Matematica","Romana","Informatica","Engleza","Istorie","Chimie","Biologie","Geografie","Fizica"}; 
+
+        private void tabPageSituatie_Click(object sender, EventArgs e)
+        {
+            tabControl1.Hide();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+      
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+      
+            if (tabControl1.SelectedTab==tabPageSituatie)
+            {
+                con.Open();
+                deteleAllItemsInDataGridView();
+
+                cmd = new SqlCommand("SELECT * FROM  Note WHERE IdElevi=@Id", con);
+                cmd.Parameters.AddWithValue("Id", Form1.id);
+                using (SqlDataReader date = cmd.ExecuteReader())
+                {
+                  
+                    while (date.Read())
+                    {
+                        for (int i = 0; i < vectorMaterii.Length; i++)
+                            if (date[vectorMaterii[i]].ToString() != "")
+                            {
+                                DataGridViewButtonColumn addButtonColumn = new DataGridViewButtonColumn();
+                                addButtonColumn.Name = "buttonStergeNota";
+
+                                dataGridView1.Rows.Add(addButtonColumn, date["Id"].ToString(), date[vectorMaterii[i]].ToString(), vectorMaterii[i]);
+                                
+                                addButtonColumn.HeaderText = "STERGE";
+                                string querry = "DELETE FROM Note WHERE  = " + Form1.id;
+
+                                //cmd = new SqlCommand(querry, con);
+                                //cmd.ExecuteNonQuery();
+                            }
+                    }
+                }
+                for (int i = 0; i < vectorMaterii.Length; i++)
+                {
+                    cmd = new SqlCommand("SELECT " + vectorMaterii[i] + " FROM Note WHERE IdElevi=@id AND " + vectorMaterii[i] + " IS NOT NULL", con);
+                    cmd.Parameters.AddWithValue("id", Form1.id);
+                    using (SqlDataReader date = cmd.ExecuteReader())
+                    {
+                        int nota = 0, nrnote = 0;
+                        while (date.Read())
+                        {
+
+                            nota += Convert.ToInt32(date[vectorMaterii[i]]);
+                            nrnote++;
+
+                        }
+                        if (nrnote == 0||nrnote<2)
+                        {
+                            dataGridView2.Rows.Add(vectorMaterii[i].ToString(), "Nu ai suficiente note!");
+                            continue;
+                        }
+                        if ((nota / nrnote) - (int)(nota / nrnote) >= 0.5)
+                            dataGridView2.Rows.Add(vectorMaterii[i].ToString(), Math.Ceiling((double)(nota / nrnote)));
+                        else dataGridView2.Rows.Add(vectorMaterii[i].ToString(), Math.Floor((double)(nota / nrnote)));
+                    }
+
+                }
+
+                con.Close();
+            }
+        }
+
+        private void catalogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tabControl1.Hide();
+            tabPageSituatie.Hide();
+            tabPageAdaugareNota.Hide();
+         
+        }
+
+        private void veziSituatieToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tabControl1.Hide();
+            tabControl1.Show();
+            tabPageSituatie.Show();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+           Form1 f= new Form1();
+            f.Show();
+          // this.Show();
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+           
+        }
+        private void buttonAdaugaTeza_Click(object sender, EventArgs e)
+        {
+            con.Open();
+            string numeMaterie = comboBoxMaterieTeza.Text;
+            int teza = Convert.ToInt32(textBoxAdaugareTeza.Text);
+            if (numeMaterie.Equals("Matematica"))
+            {
+                cmd = new SqlCommand("INSERT INTO Teze (TezaMatematica,IdElev) VALUES (@notateza,@id)", con);
+                cmd.Parameters.AddWithValue("notateza", teza);
+                cmd.Parameters.AddWithValue("id", Form1.id);
+                cmd.ExecuteNonQuery();
+            }
+            else if (numeMaterie.Equals("Romana"))
+            {
+                cmd = new SqlCommand("INSERT INTO Teze (TezaRomana,IdElev) VALUES (@notateza,@id)", con);
+                cmd.Parameters.AddWithValue("notateza", teza);
+                cmd.Parameters.AddWithValue("id", Form1.id);
+                cmd.ExecuteNonQuery();
+            }
+            else if (numeMaterie.Equals("Informatica"))
+            {
+                cmd = new SqlCommand("INSERT INTO Teze (TezaInformatica,IdElev) VALUES (@notateza,@id)", con);
+                cmd.Parameters.AddWithValue("notateza", teza);
+                cmd.Parameters.AddWithValue("id", Form1.id);
+                cmd.ExecuteNonQuery();
+            }
+            else if(checkedListBox1.SelectedItem.Equals("Chimie")&&numeMaterie.Equals("Chimie"))
+            {
+                cmd = new SqlCommand("INSERT INTO Teze (TezaChimie,IdElev) VALUES (@notateza,@id)", con);
+                cmd.Parameters.AddWithValue("notateza", teza);
+                cmd.Parameters.AddWithValue("id", Form1.id);
+                cmd.ExecuteNonQuery();
+            }
+            else if (checkedListBox1.SelectedItem.Equals("Biologie") && numeMaterie.Equals("Biologie"))
+            {
+                cmd = new SqlCommand("INSERT INTO Teze (TezaBiologie,IdElev) VALUES (@notateza,@id)", con);
+                cmd.Parameters.AddWithValue("notateza", teza);
+                cmd.Parameters.AddWithValue("id", Form1.id);
+                cmd.ExecuteNonQuery();
+            }
+            else if (checkedListBox1.SelectedItem.Equals("Fizica") && numeMaterie.Equals("Fizica"))
+            {
+                cmd = new SqlCommand("INSERT INTO Teze (TezaFizica,IdElev) VALUES (@notateza,@id)", con);
+                cmd.Parameters.AddWithValue("notateza", teza);
+                cmd.Parameters.AddWithValue("id", Form1.id);
+                cmd.ExecuteNonQuery();
+            }
+            MyNewMessageBox2 mesaj2 = new MyNewMessageBox2();
+            this.Hide();
+            mesaj2.ShowDialog();
+            this.Show();
+            textBoxNotaAdauga.Clear();
+            con.Close();
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
+
+         
+        
+    
+

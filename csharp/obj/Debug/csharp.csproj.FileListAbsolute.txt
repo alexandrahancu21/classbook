@@ -1,0 +1,73 @@
+E:\CLS.XI\C#\csharp\csharp\bin\Debug\csharp.exe.config
+E:\CLS.XI\C#\csharp\csharp\bin\Debug\csharp.exe
+E:\CLS.XI\C#\csharp\csharp\bin\Debug\csharp.pdb
+E:\CLS.XI\C#\csharp\csharp\obj\Debug\csharp.csprojAssemblyReference.cache
+E:\CLS.XI\C#\csharp\csharp\obj\Debug\csharp.Catalog.resources
+E:\CLS.XI\C#\csharp\csharp\obj\Debug\csharp.Form1.resources
+E:\CLS.XI\C#\csharp\csharp\obj\Debug\csharp.Properties.Resources.resources
+E:\CLS.XI\C#\csharp\csharp\obj\Debug\csharp.csproj.GenerateResource.cache
+E:\CLS.XI\C#\csharp\csharp\obj\Debug\csharp.exe
+E:\CLS.XI\C#\csharp\csharp\obj\Debug\csharp.pdb
+E:\CLS.XI\C#\csharp\csharp\obj\Debug\csharp.MyNewMessageBox.resources
+E:\CLS.XI\C#\csharp\csharp\obj\Debug\csharp.Form3.resources
+E:\CLS.XI\C#\csharp\csharp\obj\Debug\csharp.MyNewMessageBox1.resources
+E:\CLS.XI\C#\csharp\csharp\obj\Debug\csharp.MyNewMessageBox3.resources
+E:\CLS.XI\C#\csharp\csharp\obj\Debug\csharp.MyNewMessageBox4.resources
+E:\CLS.XI\C#\csharp\csharp\obj\Debug\csharp.MyNewMessageBox5.resources
+E:\CLS.XI\C#\csharp\csharp\obj\Debug\csharp.MyNewMessageBox6.resources
+E:\CLS.XI\C#\csharp\csharp\obj\Debug\csharp.MyNewMessageBox7.resources
+E:\CLS.XI\C#\csharp\csharp\obj\Debug\csharp.MyNewMessageBox8.resources
+E:\CLS.XI\C#\csharp\csharp\obj\Debug\csharp.MyNewMessageBox9.resources
+E:\CLS.XI\C#\csharp\csharp\obj\Debug\csharp.MedieGenerala.resources
+E:\CLS.XI\C#\csharp\csharp\obj\Debug\csharp.MyNewMessageBox10.resources
+E:\CLS.XI\C#\csharp\csharp\obj\Debug\csharp.MyNewMessageBox11.resources
+C:\Users\Alexandra Hancu\OneDrive\Desktop\csharp\csharp\bin\Debug\csharp.exe.config
+C:\Users\Alexandra Hancu\OneDrive\Desktop\csharp\csharp\bin\Debug\csharp.exe
+C:\Users\Alexandra Hancu\OneDrive\Desktop\csharp\csharp\bin\Debug\csharp.pdb
+C:\Users\Alexandra Hancu\OneDrive\Desktop\csharp\csharp\obj\Debug\csharp.csprojAssemblyReference.cache
+C:\Users\Alexandra Hancu\OneDrive\Desktop\csharp\csharp\obj\Debug\csharp.Catalog.resources
+C:\Users\Alexandra Hancu\OneDrive\Desktop\csharp\csharp\obj\Debug\csharp.Form1.resources
+C:\Users\Alexandra Hancu\OneDrive\Desktop\csharp\csharp\obj\Debug\csharp.Form2.resources
+C:\Users\Alexandra Hancu\OneDrive\Desktop\csharp\csharp\obj\Debug\csharp.Form3.resources
+C:\Users\Alexandra Hancu\OneDrive\Desktop\csharp\csharp\obj\Debug\csharp.MedieGenerala.resources
+C:\Users\Alexandra Hancu\OneDrive\Desktop\csharp\csharp\obj\Debug\csharp.MyNewMessageBox.resources
+C:\Users\Alexandra Hancu\OneDrive\Desktop\csharp\csharp\obj\Debug\csharp.MyNewMessageBox1.resources
+C:\Users\Alexandra Hancu\OneDrive\Desktop\csharp\csharp\obj\Debug\csharp.MyNewMessageBox10.resources
+C:\Users\Alexandra Hancu\OneDrive\Desktop\csharp\csharp\obj\Debug\csharp.MyNewMessageBox11.resources
+C:\Users\Alexandra Hancu\OneDrive\Desktop\csharp\csharp\obj\Debug\csharp.MyNewMessageBox3.resources
+C:\Users\Alexandra Hancu\OneDrive\Desktop\csharp\csharp\obj\Debug\csharp.MyNewMessageBox4.resources
+C:\Users\Alexandra Hancu\OneDrive\Desktop\csharp\csharp\obj\Debug\csharp.MyNewMessageBox5.resources
+C:\Users\Alexandra Hancu\OneDrive\Desktop\csharp\csharp\obj\Debug\csharp.MyNewMessageBox6.resources
+C:\Users\Alexandra Hancu\OneDrive\Desktop\csharp\csharp\obj\Debug\csharp.MyNewMessageBox7.resources
+C:\Users\Alexandra Hancu\OneDrive\Desktop\csharp\csharp\obj\Debug\csharp.MyNewMessageBox8.resources
+C:\Users\Alexandra Hancu\OneDrive\Desktop\csharp\csharp\obj\Debug\csharp.MyNewMessageBox9.resources
+C:\Users\Alexandra Hancu\OneDrive\Desktop\csharp\csharp\obj\Debug\csharp.Properties.Resources.resources
+C:\Users\Alexandra Hancu\OneDrive\Desktop\csharp\csharp\obj\Debug\csharp.csproj.GenerateResource.cache
+C:\Users\Alexandra Hancu\OneDrive\Desktop\csharp\csharp\obj\Debug\csharp.csproj.CoreCompileInputs.cache
+C:\Users\Alexandra Hancu\OneDrive\Desktop\csharp\csharp\obj\Debug\csharp.exe
+C:\Users\Alexandra Hancu\OneDrive\Desktop\csharp\csharp\obj\Debug\csharp.pdb
+D:\csharp\csharp\bin\Debug\csharp.exe.config
+D:\csharp\csharp\bin\Debug\csharp.exe
+D:\csharp\csharp\bin\Debug\csharp.pdb
+D:\csharp\csharp\obj\Debug\csharp.Catalog.resources
+D:\csharp\csharp\obj\Debug\csharp.Form1.resources
+D:\csharp\csharp\obj\Debug\csharp.Form2.resources
+D:\csharp\csharp\obj\Debug\csharp.Form3.resources
+D:\csharp\csharp\obj\Debug\csharp.MedieGenerala.resources
+D:\csharp\csharp\obj\Debug\csharp.MyNewMessageBox.resources
+D:\csharp\csharp\obj\Debug\csharp.MyNewMessageBox1.resources
+D:\csharp\csharp\obj\Debug\csharp.MyNewMessageBox10.resources
+D:\csharp\csharp\obj\Debug\csharp.MyNewMessageBox11.resources
+D:\csharp\csharp\obj\Debug\csharp.MyNewMessageBox3.resources
+D:\csharp\csharp\obj\Debug\csharp.MyNewMessageBox4.resources
+D:\csharp\csharp\obj\Debug\csharp.MyNewMessageBox5.resources
+D:\csharp\csharp\obj\Debug\csharp.MyNewMessageBox6.resources
+D:\csharp\csharp\obj\Debug\csharp.MyNewMessageBox7.resources
+D:\csharp\csharp\obj\Debug\csharp.MyNewMessageBox8.resources
+D:\csharp\csharp\obj\Debug\csharp.MyNewMessageBox9.resources
+D:\csharp\csharp\obj\Debug\csharp.Properties.Resources.resources
+D:\csharp\csharp\obj\Debug\csharp.csproj.GenerateResource.cache
+D:\csharp\csharp\obj\Debug\csharp.csproj.CoreCompileInputs.cache
+D:\csharp\csharp\obj\Debug\csharp.exe
+D:\csharp\csharp\obj\Debug\csharp.pdb
+D:\csharp\csharp\obj\Debug\csharp.csproj.AssemblyReference.cache

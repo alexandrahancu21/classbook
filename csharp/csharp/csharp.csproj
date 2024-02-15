@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2D68E711-0D13-4B90-9DD3-2AB168FB756B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>csharp</RootNamespace>
+    <AssemblyName>csharp</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Catalog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Catalog.Designer.cs">
+      <DependentUpon>Catalog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form2.Designer.cs">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form3.Designer.cs">
+      <DependentUpon>Form3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form4.Designer.cs">
+      <DependentUpon>Form4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MedieGenerala.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MedieGenerala.Designer.cs">
+      <DependentUpon>MedieGenerala.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyNewMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyNewMessageBox.Designer.cs">
+      <DependentUpon>MyNewMessageBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyNewMessageBox1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyNewMessageBox1.Designer.cs">
+      <DependentUpon>MyNewMessageBox1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyNewMessageBox10.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyNewMessageBox10.Designer.cs">
+      <DependentUpon>MyNewMessageBox10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyNewMessageBox11.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyNewMessageBox11.Designer.cs">
+      <DependentUpon>MyNewMessageBox11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyNewMessageBox3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyNewMessageBox3.Designer.cs">
+      <DependentUpon>MyNewMessageBox3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyNewMessageBox4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyNewMessageBox4.Designer.cs">
+      <DependentUpon>MyNewMessageBox4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyNewMessageBox5.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyNewMessageBox5.Designer.cs">
+      <DependentUpon>MyNewMessageBox5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyNewMessageBox6.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyNewMessageBox6.Designer.cs">
+      <DependentUpon>MyNewMessageBox6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyNewMessageBox7.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyNewMessageBox7.Designer.cs">
+      <DependentUpon>MyNewMessageBox7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyNewMessageBox8.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyNewMessageBox8.Designer.cs">
+      <DependentUpon>MyNewMessageBox8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyNewMessageBox9.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyNewMessageBox9.Designer.cs">
+      <DependentUpon>MyNewMessageBox9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Catalog.resx">
+      <DependentUpon>Catalog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form2.resx">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form3.resx">
+      <DependentUpon>Form3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form4.resx">
+      <DependentUpon>Form4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MedieGenerala.resx">
+      <DependentUpon>MedieGenerala.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyNewMessageBox.resx">
+      <DependentUpon>MyNewMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyNewMessageBox1.resx">
+      <DependentUpon>MyNewMessageBox1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyNewMessageBox10.resx">
+      <DependentUpon>MyNewMessageBox10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyNewMessageBox11.resx">
+      <DependentUpon>MyNewMessageBox11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyNewMessageBox3.resx">
+      <DependentUpon>MyNewMessageBox3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyNewMessageBox4.resx">
+      <DependentUpon>MyNewMessageBox4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyNewMessageBox5.resx">
+      <DependentUpon>MyNewMessageBox5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyNewMessageBox6.resx">
+      <DependentUpon>MyNewMessageBox6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyNewMessageBox7.resx">
+      <DependentUpon>MyNewMessageBox7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyNewMessageBox8.resx">
+      <DependentUpon>MyNewMessageBox8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyNewMessageBox9.resx">
+      <DependentUpon>MyNewMessageBox9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

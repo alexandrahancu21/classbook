@@ -1,0 +1,356 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data.SqlClient;
+using System.Windows.Forms;
+using System.Net.Http.Headers;
+using System.Collections.Specialized;
+
+namespace csharp
+{
+    public partial class Catalog : Form
+    {
+
+        SqlConnection con;
+        SqlCommand cmd;
+        public Catalog()
+        {
+
+            InitializeComponent();
+            con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\hancu\Documents\Catalog.mdf;Integrated Security=True;Connect Timeout=30");
+        }
+
+        private void adaugaNotaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tabControl1.Hide();
+            tabControl1.Show();
+            tabPageAdaugareNota.Show();
+        }
+
+
+        private void buttonAdaugaNota_Click(object sender, EventArgs e)
+        {
+            string numeMaterie = comboBoxNumeMaterie.Text;
+            int nota = 0;
+
+            if (Convert.ToInt32(textBoxNotaAdauga.Text) >= 1 && Convert.ToInt32(textBoxNotaAdauga.Text) <= 10)
+                nota = Convert.ToInt32(textBoxNotaAdauga.Text);
+            else
+            {
+                MessageBox.Show("Poti introduce doar numere si campul trebuie completat neaparat!");
+                return;
+            }
+
+            con.Open();
+
+            cmd = new SqlCommand("INSERT INTO Note(" + numeMaterie + ", IdElevi) VALUES (@nota, @id)", con);
+            cmd.Parameters.AddWithValue("nota", nota);
+            cmd.Parameters.AddWithValue("id", Form1.id);
+            cmd.ExecuteNonQuery();
+
+            MyNewMessageBox1 mesaj1 = new MyNewMessageBox1();
+            this.Hide();
+            mesaj1.ShowDialog();
+            this.Show();
+            textBoxNotaAdauga.Clear();
+            con.Close();
+        }
+
+        private void deteleAllItemsInDataGridView()
+        {
+            dataGridView1.Rows.Clear();
+        }
+        private void deteleAllItemsInDataGridView1()
+        {
+            dataGridView2.Rows.Clear();
+        }
+        string[] vectorMaterii = { "Matematica", "Romana", "Informatica", "Engleza", "Istorie", "Chimie", "Biologie", "Geografie", "Fizica" };
+
+        private void tabPageSituatie_Click(object sender, EventArgs e)
+        {
+            tabControl1.Hide();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            con.Open();
+            int rowIndex = e.RowIndex;
+            DataGridViewRow row = dataGridView1.Rows[rowIndex];
+            int idul = Convert.ToInt32(dataGridView1.Rows[rowIndex].Cells[1].Value);
+            cmd = new SqlCommand("DELETE FROM Note Where id=@id", con);
+            cmd.Parameters.AddWithValue("id", idul);
+            cmd.ExecuteNonQuery();
+            cmd.Dispose();
+            foreach (DataGridViewCell oneCell in dataGridView1.SelectedCells)
+            {
+                if (oneCell.Selected)
+                    dataGridView1.Rows.RemoveAt(oneCell.RowIndex);
+            }
+            
+            con.Close();
+        }
+
+        int[] medii = new int[11];
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (tabControl1.SelectedTab == tabPageSituatie)
+            {
+                con.Open();
+                deteleAllItemsInDataGridView();
+
+                cmd = new SqlCommand("SELECT * FROM  Note WHERE IdElevi=@Id", con);
+                cmd.Parameters.AddWithValue("Id", Form1.id);
+                using (SqlDataReader date = cmd.ExecuteReader())
+                {
+
+                    while (date.Read())
+                    {
+                        for (int i = 0; i < vectorMaterii.Length; i++)
+                            if (date[vectorMaterii[i]].ToString() != "")
+                            {
+                                
+                                    dataGridView1.Rows.Add(null, date["Id"].ToString(), date[vectorMaterii[i]].ToString(), vectorMaterii[i]);
+                                
+                            }
+                    }
+                }
+
+                
+                for (int i = 0; i < vectorMaterii.Length; i++)
+                {
+                    cmd = new SqlCommand("SELECT " + vectorMaterii[i] + " FROM Note WHERE IdElevi=@id AND " + vectorMaterii[i] + " IS NOT NULL", con);
+                    cmd.Parameters.AddWithValue("id", Form1.id);
+                }
+                
+                for (int i = 0; i < vectorMaterii.Length; i++)
+                    {
+                    
+                    if(vectorMaterii[i].Equals("Matematica"))
+
+                    { 
+                        cmd = new SqlCommand("SELECT " + vectorMaterii[i] + " FROM Note WHERE IdElevi=@id AND " + vectorMaterii[i] + " IS NOT NULL", con);
+                        cmd.Parameters.AddWithValue("id", Form1.id);
+
+                        using (SqlDataReader date = cmd.ExecuteReader())
+                        {
+                            int nota = 0, nrnote = 0;
+                            while (date.Read())
+                            {
+
+                                nota += Convert.ToInt32(date[vectorMaterii[i]]);
+                                nrnote++;
+
+                            }
+                            if (nrnote == 0 || nrnote < 2)
+                            {
+                                dataGridView2.Rows.Add(vectorMaterii[i].ToString(), "Nu ai suficiente note!");
+                                continue;
+                            }
+                            
+                            if ((nota / nrnote) - (int)(nota / nrnote) >= 0.5)
+                                {
+                                    dataGridView2.Rows.Add(vectorMaterii[i].ToString(), Math.Ceiling((double)((nota / nrnote))));
+                                    medii[i] = Convert.ToInt32(Math.Floor((double)(nota / nrnote)));
+                                
+                                }
+                                    
+                                else dataGridView2.Rows.Add(vectorMaterii[i].ToString(), Math.Floor((double)((nota / nrnote))));
+                                {
+                                     dataGridView2.Rows.Add(vectorMaterii[i].ToString(), Math.Ceiling((double)((nota / nrnote))));
+                                    medii[i] = Convert.ToInt32(Math.Floor((double)(nota / nrnote)));
+                                }
+                            
+                          
+                            
+                                
+                                    
+                            
+                           
+                        }
+                        
+                    }
+
+                }
+
+                con.Close();
+            }
+        }
+
+        private void catalogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tabControl1.Hide();
+            tabPageSituatie.Hide();
+            tabPageAdaugareNota.Hide();
+
+        }
+
+        private void veziSituatieToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tabControl1.Hide();
+            tabControl1.Show();
+            tabPageSituatie.Show();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Form1 f = new Form1();
+            f.Show();
+            // this.Show();
+        }
+
+        int numar = 0, numar2 = 0, numar3 = 0, numar4 = 0, numar5 = 0, numar6 = 0;
+        int tezamatematica = 0, tezaromana = 0, tezainformatica = 0, tezachimie = 0, tezafizica = 0, tezabio = 0;
+        private void buttonAdaugaTeza_Click(object sender, EventArgs e)
+        {
+            con.Open();
+            string numeMaterie = comboBoxMaterieTeza.Text;
+            int teza = Convert.ToInt32(textBoxAdaugareTeza.Text);
+
+            if (numeMaterie.Equals("Matematica") && numar == 0)
+            {
+                cmd = new SqlCommand("INSERT INTO Teze (TezaMatematica,IdElev) VALUES (@notateza,@id)", con);
+                cmd.Parameters.AddWithValue("notateza", teza);
+                cmd.Parameters.AddWithValue("id", Form1.id);
+                cmd.ExecuteNonQuery();
+                tezamatematica = Convert.ToInt32(textBoxAdaugareTeza.Text);
+                medii[0] = (medii[0] * 3 + tezamatematica) / 4;
+                numar = 1;
+            }
+            else if (numeMaterie.Equals("Romana"))
+            {
+                cmd = new SqlCommand("INSERT INTO Teze (TezaRomana,IdElev) VALUES (@notateza,@id)", con);
+                cmd.Parameters.AddWithValue("notateza", teza);
+                cmd.Parameters.AddWithValue("id", Form1.id);
+                cmd.ExecuteNonQuery();
+                tezaromana = Convert.ToInt32(cmd.ExecuteScalar());
+                medii[1] = (medii[1] * 3 + tezaromana) / 4;
+                numar2 = 1;
+            }
+            else if (numeMaterie.Equals("Informatica"))
+            {
+                cmd = new SqlCommand("INSERT INTO Teze (TezaInformatica,IdElev) VALUES (@notateza,@id)", con);
+                cmd.Parameters.AddWithValue("notateza", teza);
+                cmd.Parameters.AddWithValue("id", Form1.id);
+                cmd.ExecuteNonQuery();
+                tezainformatica = Convert.ToInt32(cmd.ExecuteScalar());
+                medii[2] = (medii[2] * 3 + tezainformatica) / 4;
+                numar3 = 1;
+            }
+            else if (checkedListBox1.SelectedItem.Equals("Chimie") && numeMaterie.Equals("Chimie"))
+            {
+                cmd = new SqlCommand("INSERT INTO Teze (TezaChimie,IdElev) VALUES (@notateza,@id)", con);
+                cmd.Parameters.AddWithValue("notateza", teza);
+                cmd.Parameters.AddWithValue("id", Form1.id);
+                cmd.ExecuteNonQuery();
+                tezachimie = Convert.ToInt32(cmd.ExecuteScalar());
+                medii[3] = (medii[3] * 3 + tezachimie) / 4;
+                numar4 = 1;
+            }
+            else if (checkedListBox1.SelectedItem.Equals("Biologie") && numeMaterie.Equals("Biologie"))
+            {
+                cmd = new SqlCommand("INSERT INTO Teze (TezaBiologie,IdElev) VALUES (@notateza,@id)", con);
+                cmd.Parameters.AddWithValue("notateza", teza);
+                cmd.Parameters.AddWithValue("id", Form1.id);
+                cmd.ExecuteNonQuery();
+                tezabio = Convert.ToInt32(cmd.ExecuteScalar());
+                medii[4] = (medii[4] * 3 + tezabio) / 4;
+                numar5 = 1;
+            }
+            else if (checkedListBox1.SelectedItem.Equals("Fizica") && numeMaterie.Equals("Fizica"))
+            {
+                cmd = new SqlCommand("INSERT INTO Teze (TezaFizica,IdElev) VALUES (@notateza,@id)", con);
+                cmd.Parameters.AddWithValue("notateza", teza);
+                cmd.Parameters.AddWithValue("id", Form1.id);
+                cmd.ExecuteNonQuery();
+                tezafizica = Convert.ToInt32(cmd.ExecuteScalar());
+                medii[5] = (medii[5] * 3 + tezafizica) / 4;
+                numar6 = 1;
+            }
+            for(int i=0;i<vectorMaterii;i++)
+            {
+                dataGridView1.Rows.Add(vectorMaterii[i].ToString(), medii[i]);
+            }
+            if (checkedListBox1.CheckedItems.Equals("Fizica") && !numeMaterie.Equals("Fizica"))
+            {
+                /*MyNewMessageBox4 f = new MyNewMessageBox4();
+                this.Hide();
+                f.ShowDialog();
+                this.Show();*/
+                MessageBox.Show("Cand adaugi materia trebuie sa fie aceeasi cu cea selectata la pasul 1!");
+            }
+            if (checkedListBox1.CheckedItems.Equals("Chimie") && !numeMaterie.Equals("Chimie"))
+            {
+                /* MyNewMessageBox4 f = new MyNewMessageBox4();
+                 this.Hide();
+                 f.ShowDialog();
+                 this.Show();*/
+                MessageBox.Show("Cand adaugi materia trebuie sa fie aceeasi cu cea selectata la pasul 1!");
+            }
+            if (checkedListBox1.CheckedItems.Equals("Biologie") && !numeMaterie.Equals("Biologie"))
+            {
+                /*MyNewMessageBox4 f = new MyNewMessageBox4();
+                this.Hide();
+                f.ShowDialog();
+                this.Show();*/
+                MessageBox.Show("Cand adaugi materia trebuie sa fie aceeasi cu cea selectata la pasul 1!");
+            }
+            if (numar == 1)
+            {
+                /*MyNewMessageBox3 f = new MyNewMessageBox3();
+                this.Hide();
+                f.ShowDialog();
+                this.Show();*/
+                MessageBox.Show("Poti adauga doar o singura nota");
+            }
+            if (numar2 == 1)
+            {
+                /*MyNewMessageBox3 f = new MyNewMessageBox3();
+                this.Hide();
+                f.ShowDialog();
+                this.Show();*/
+                MessageBox.Show("Poti adauga doar o singura nota");
+            }
+            if (numar3 == 1)
+            {
+                /* MyNewMessageBox3 f = new MyNewMessageBox3();
+                 this.Hide();
+                 f.ShowDialog();
+                 this.Show();*/
+                MessageBox.Show("Poti adauga doar o singura nota");
+            }
+            if (numar4 == 1)
+            {
+                /*MyNewMessageBox3 f = new MyNewMessageBox3();
+                this.Hide();
+                f.ShowDialog();
+                this.Show();*/
+                MessageBox.Show("Poti adauga doar o singura nota");
+            }
+            if (numar5 == 1)
+            {
+                /* MyNewMessageBox3 f = new MyNewMessageBox3();
+                 this.Hide();
+                 f.ShowDialog();
+                 this.Show();*/
+                MessageBox.Show("Poti adauga doar o singura nota");
+            }
+            if (numar6 == 1)
+            {
+                /* MyNewMessageBox3 f = new MyNewMessageBox3();
+                 this.Hide();
+                 f.ShowDialog();
+                 this.Show();*/
+                MessageBox.Show("Poti adauga doar o singura nota");
+            }
+            con.Close();
+        }
+
+    }
+}
